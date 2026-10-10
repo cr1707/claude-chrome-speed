@@ -1,0 +1,127 @@
+{
+ "page": 2,
+ "pages": 6,
+ "total": 120,
+ "items": [
+  {
+   "name": "Nordic Shelf",
+   "category": "Storage",
+   "price": 312.59,
+   "rating": 2.7
+  },
+  {
+   "name": "Dune Cabinet",
+   "category": "Storage",
+   "price": 296.05,
+   "rating": 5.0
+  },
+  {
+   "name": "Nordic Stool",
+   "category": "Seating",
+   "price": 199.35,
+   "rating": 3.4
+  },
+  {
+   "name": "Pebble Sideboard",
+   "category": "Storage",
+   "price": 306.76,
+   "rating": 3.5
+  },
+  {
+   "name": "Arden Dining Chair",
+   "category": "Seating",
+   "price": 277.63,
+   "rating": 3.3
+  },
+  {
+   "name": "Ridge Cushion",
+   "category": "Textiles",
+   "price": 365.87,
+   "rating": 3.8
+  },
+  {
+   "name": "Oak Cushion",
+   "category": "Textiles",
+   "price": 178.34,
+   "rating": 4.2
+  },
+  {
+   "name": "Pebble Console",
+   "category": "Tables",
+   "price": 306.9,
+   "rating": 2.6
+  },
+  {
+   "name": "Ridge Console",
+   "category": "Tables",
+   "price": 286.35,
+   "rating": 3.6
+  },
+  {
+   "name": "Isle Bench",
+   "category": "Seating",
+   "price": 336.3,
+   "rating": 3.0
+  },
+  {
+   "name": "Bramble Lounge Chair",
+   "category": "Seating",
+   "price": 164.95,
+   "rating": 5.0
+  },
+  {
+   "name": "Cove Dining Table",
+   "category": "Tables",
+   "price": 173.11,
+   "rating": 3.9
+  },
+  {
+   "name": "Ember Coffee Table",
+   "category": "Tables",
+   "price": 226.55,
+   "rating": 4.9
+  },
+  {
+   "name": "Tide Wall Sconce",
+   "category": "Lighting",
+   "price": 249.67,
+   "rating": 4.2
+  },
+  {
+   "name": "Arden Blanket",
+   "category": "Textiles",
+   "price": 156.84,
+   "rating": 2.9
+  },
+  {
+   "name": "Kestrel Cabinet",
+   "category": "Storage",
+   "price": 217.02,
+   "rating": 3.5
+  },
+  {
+   "name": "Cove Pendant",
+   "category": "Lighting",
+   "price": 79.12,
+   "rating": 3.0
+  },
+  {
+   "name": "Ridge Bench",
+   "category": "Seating",
+   "price": 383.42,
+   "rating": 4.9
+  },
+  {
+   "name": "Bramble Armchair",
+   "category": "Seating",
+   "price": 389.22,
+   "rating": 4.1
+  },
+  {
+   "name": "Cove Console",
+   "category": "Tables",
+   "price": 135.22,
+   "rating": 3.2
+  }
+ ]
+}

@@ -3,18 +3,59 @@
     "id": "books",
     "kind": "multi-page extraction",
     "prompt": "Go to https://books.toscrape.com and open the Mystery category. Which 3 books in that category are the most expensive? Give the title and price of each.",
-    "expect_all": ["Boar Island", "59.48", "57.70", "Past Never Ends", "56.50"]
+    "expect_all": [
+      "Boar Island",
+      "59.48",
+      "57.70",
+      "Past Never Ends",
+      "56.50"
+    ]
   },
   {
     "id": "form",
     "kind": "form fill + submit",
     "prompt": "Open http://localhost:8799/form.html and fill in the form with: Full name Ada Moretti; Email ada.moretti@example.com; Company Northwind Studio; Street address 12 Via Roma; City Turin; Postcode 10121; Country Italy; Number of samples 3; Delivery speed Express; leave the newsletter box unticked; Notes \"Please ring the bell twice.\" Then submit it and tell me the confirmation code it shows.",
-    "expect_all": ["7E04913D"]
+    "expect_all": [
+      "7E04913D"
+    ]
   },
   {
     "id": "wiki",
     "kind": "navigation chain",
     "prompt": "Using English Wikipedia in the browser, find which country won the 2018 FIFA World Cup, then open the article about that country's capital city and tell me the population figure shown in that article's infobox.",
-    "expect_all": ["Paris", "2047602"]
+    "expect_all": [
+      "Paris",
+      "2047602"
+    ]
+  },
+  {
+    "id": "spa",
+    "kind": "app-style form (controlled inputs, custom dropdown, toggle)",
+    "prompt": "Open http://localhost:8799/spa-form.html and create an account with: Full name Lena Fischer; Work email lena.fischer@example.com; Company Brightpath; Plan Growth; Seats 7; Annual billing on; Start date 2026-11-02; Notes \"Invoice to finance team.\" Then click Create account and tell me the confirmation code.",
+    "expect_all": [
+      "BD7C0174"
+    ]
+  },
+  {
+    "id": "catalog",
+    "kind": "infinite list (120 items, 20 per load)",
+    "prompt": "On http://localhost:8799/catalog.html, find the three cheapest products in the Lighting category that have a rating of 4.0 or higher. Check the whole catalogue, not just the first screen. Give each product's name and price.",
+    "expect_all": [
+      "Lumen Clip Lamp",
+      "24.9",
+      "Wren Reading Lamp",
+      "27.75",
+      "Halo Mini Pendant",
+      "31.5"
+    ]
+  },
+  {
+    "id": "suppliers",
+    "kind": "multi-page comparison with small print",
+    "prompt": "Three suppliers sent quotes for part HX-220: http://localhost:8799/supplier-a.html, http://localhost:8799/supplier-b.html and http://localhost:8799/supplier-c.html. For an order of 40 units, which supplier is cheapest in total, including shipping, discounts and fees? Give the supplier name and the total in euros.",
+    "expect_all": [
+      "Kestrel",
+      "708"
+    ]
   }
 ]

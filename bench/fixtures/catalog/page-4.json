@@ -1,0 +1,127 @@
+{
+ "page": 4,
+ "pages": 6,
+ "total": 120,
+ "items": [
+  {
+   "name": "Glade Cabinet",
+   "category": "Storage",
+   "price": 406.47,
+   "rating": 3.0
+  },
+  {
+   "name": "Moss Chest",
+   "category": "Storage",
+   "price": 161.34,
+   "rating": 4.2
+  },
+  {
+   "name": "Kestrel Stool",
+   "category": "Seating",
+   "price": 265.44,
+   "rating": 3.2
+  },
+  {
+   "name": "Juniper Armchair",
+   "category": "Seating",
+   "price": 284.38,
+   "rating": 3.9
+  },
+  {
+   "name": "Ridge Stool",
+   "category": "Seating",
+   "price": 153.35,
+   "rating": 4.7
+  },
+  {
+   "name": "Kestrel Throw",
+   "category": "Textiles",
+   "price": 155.15,
+   "rating": 2.9
+  },
+  {
+   "name": "Pine Plant Stand",
+   "category": "Storage",
+   "price": 12.0,
+   "rating": 4.8
+  },
+  {
+   "name": "Oak Rug",
+   "category": "Textiles",
+   "price": 340.77,
+   "rating": 3.2
+  },
+  {
+   "name": "Slate Desk Lamp",
+   "category": "Lighting",
+   "price": 67.09,
+   "rating": 4.5
+  },
+  {
+   "name": "Nordic Console",
+   "category": "Tables",
+   "price": 388.84,
+   "rating": 4.0
+  },
+  {
+   "name": "Oak Dining Chair",
+   "category": "Seating",
+   "price": 248.36,
+   "rating": 3.1
+  },
+  {
+   "name": "Kestrel Lounge Chair",
+   "category": "Seating",
+   "price": 387.44,
+   "rating": 4.5
+  },
+  {
+   "name": "Tide Stool",
+   "category": "Seating",
+   "price": 124.73,
+   "rating": 4.9
+  },
+  {
+   "name": "Dune Coffee Table",
+   "category": "Tables",
+   "price": 101.61,
+   "rating": 4.7
+  },
+  {
+   "name": "Dune Chest",
+   "category": "Storage",
+   "price": 320.06,
+   "rating": 4.3
+  },
+  {
+   "name": "Fjord Curtain",
+   "category": "Textiles",
+   "price": 92.95,
+   "rating": 4.4
+  },
+  {
+   "name": "Quarry Console",
+   "category": "Tables",
+   "price": 385.72,
+   "rating": 3.5
+  },
+  {
+   "name": "Slate Dining Table",
+   "category": "Tables",
+   "price": 181.75,
+   "rating": 2.6
+  },
+  {
+   "name": "Linden Desk",
+   "category": "Tables",
+   "price": 306.01,
+   "rating": 3.5
+  },
+  {
+   "name": "Ember Blanket",
+   "category": "Textiles",
+   "price": 78.79,
+   "rating": 3.3
+  }
+ ]
+}

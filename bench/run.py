@@ -144,6 +144,7 @@ def regrade(out):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--reps", type=int, default=3)
+    ap.add_argument("--start-rep", type=int, default=1, help="number of the first repetition, to add runs to an existing results file")
     ap.add_argument("--tasks", default="")
     ap.add_argument("--conds", default="baseline,speed")
     ap.add_argument("--model", default="sonnet")
@@ -168,7 +169,7 @@ def main():
     cwd = tempfile.mkdtemp(prefix="chrome-speed-bench-")
     settings = BENCH / "settings.json"
 
-    for rep in range(1, args.reps + 1):
+    for rep in range(args.start_rep, args.start_rep + args.reps):
         for task in tasks:
             order = conds if rep % 2 else list(reversed(conds))
             for cond in order:

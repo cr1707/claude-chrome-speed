@@ -1,0 +1,127 @@
+{
+ "page": 3,
+ "pages": 6,
+ "total": 120,
+ "items": [
+  {
+   "name": "Isle Dining Chair",
+   "category": "Seating",
+   "price": 82.92,
+   "rating": 4.4
+  },
+  {
+   "name": "Dune Dining Table",
+   "category": "Tables",
+   "price": 175.19,
+   "rating": 4.8
+  },
+  {
+   "name": "Isle Side Table",
+   "category": "Tables",
+   "price": 333.74,
+   "rating": 4.5
+  },
+  {
+   "name": "Arden Stool",
+   "category": "Seating",
+   "price": 282.55,
+   "rating": 3.5
+  },
+  {
+   "name": "Glade Dining Table",
+   "category": "Tables",
+   "price": 384.37,
+   "rating": 3.6
+  },
+  {
+   "name": "Bramble Stool",
+   "category": "Seating",
+   "price": 356.68,
+   "rating": 3.3
+  },
+  {
+   "name": "Ember Armchair",
+   "category": "Seating",
+   "price": 267.2,
+   "rating": 4.2
+  },
+  {
+   "name": "Lumen Clip Lamp",
+   "category": "Lighting",
+   "price": 24.9,
+   "rating": 4.3
+  },
+  {
+   "name": "Harbor Side Table",
+   "category": "Tables",
+   "price": 184.83,
+   "rating": 4.7
+  },
+  {
+   "name": "Ridge Dining Table",
+   "category": "Tables",
+   "price": 398.99,
+   "rating": 4.9
+  },
+  {
+   "name": "Kestrel Coffee Table",
+   "category": "Tables",
+   "price": 163.32,
+   "rating": 4.4
+  },
+  {
+   "name": "Arden Sideboard",
+   "category": "Storage",
+   "price": 317.3,
+   "rating": 2.9
+  },
+  {
+   "name": "Dune Table Lamp",
+   "category": "Lighting",
+   "price": 242.41,
+   "rating": 2.7
+  },
+  {
+   "name": "Oak Stool",
+   "category": "Seating",
+   "price": 92.39,
+   "rating": 3.1
+  },
+  {
+   "name": "Ridge Curtain",
+   "category": "Textiles",
+   "price": 240.39,
+   "rating": 3.5
+  },
+  {
+   "name": "Ember Curtain",
+   "category": "Textiles",
+   "price": 418.02,
+   "rating": 3.2
+  },
+  {
+   "name": "Nordic Cushion",
+   "category": "Textiles",
+   "price": 198.36,
+   "rating": 3.3
+  },
+  {
+   "name": "Pebble Cabinet",
+   "category": "Storage",
+   "price": 406.69,
+   "rating": 3.3
+  },
+  {
+   "name": "Quarry Lounge Chair",
+   "category": "Seating",
+   "price": 78.46,
+   "rating": 3.6
+  },
+  {
+   "name": "Quarry Cabinet",
+   "category": "Storage",
+   "price": 283.48,
+   "rating": 4.6
+  }
+ ]
+}

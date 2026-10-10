@@ -1,0 +1,127 @@
+{
+ "page": 1,
+ "pages": 6,
+ "total": 120,
+ "items": [
+  {
+   "name": "Dune Armchair",
+   "category": "Seating",
+   "price": 275.22,
+   "rating": 3.8
+  },
+  {
+   "name": "Ember Dining Chair",
+   "category": "Seating",
+   "price": 106.12,
+   "rating": 4.9
+  },
+  {
+   "name": "Juniper Sideboard",
+   "category": "Storage",
+   "price": 130.98,
+   "rating": 4.6
+  },
+  {
+   "name": "Bramble Desk",
+   "category": "Tables",
+   "price": 86.74,
+   "rating": 2.8
+  },
+  {
+   "name": "Spark Bulb Lamp",
+   "category": "Lighting",
+   "price": 14.99,
+   "rating": 3.9
+  },
+  {
+   "name": "Fjord Throw",
+   "category": "Textiles",
+   "price": 382.07,
+   "rating": 2.7
+  },
+  {
+   "name": "Tide Floor Lamp",
+   "category": "Lighting",
+   "price": 72.85,
+   "rating": 4.1
+  },
+  {
+   "name": "Arden Coffee Table",
+   "category": "Tables",
+   "price": 340.54,
+   "rating": 3.4
+  },
+  {
+   "name": "Nordic Cabinet",
+   "category": "Storage",
+   "price": 230.44,
+   "rating": 3.0
+  },
+  {
+   "name": "Harbor Stool",
+   "category": "Seating",
+   "price": 169.22,
+   "rating": 2.6
+  },
+  {
+   "name": "Slate Chest",
+   "category": "Storage",
+   "price": 148.82,
+   "rating": 3.4
+  },
+  {
+   "name": "Kestrel Wall Sconce",
+   "category": "Lighting",
+   "price": 170.59,
+   "rating": 4.9
+  },
+  {
+   "name": "Glint Night Light",
+   "category": "Lighting",
+   "price": 19.5,
+   "rating": 3.4
+  },
+  {
+   "name": "Tide Bookcase",
+   "category": "Storage",
+   "price": 336.83,
+   "rating": 4.9
+  },
+  {
+   "name": "Tide Pendant",
+   "category": "Lighting",
+   "price": 270.44,
+   "rating": 3.5
+  },
+  {
+   "name": "Linden Bench",
+   "category": "Seating",
+   "price": 261.13,
+   "rating": 3.0
+  },
+  {
+   "name": "Moss Blanket",
+   "category": "Textiles",
+   "price": 173.82,
+   "rating": 2.8
+  },
+  {
+   "name": "Cove Stool",
+   "category": "Seating",
+   "price": 270.34,
+   "rating": 3.1
+  },
+  {
+   "name": "Kestrel Curtain",
+   "category": "Textiles",
+   "price": 105.13,
+   "rating": 2.6
+  },
+  {
+   "name": "Quarry Stool",
+   "category": "Seating",
+   "price": 377.64,
+   "rating": 2.7
+  }
+ ]
+}

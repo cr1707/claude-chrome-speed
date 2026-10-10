@@ -1,0 +1,127 @@
+{
+ "page": 5,
+ "pages": 6,
+ "total": 120,
+ "items": [
+  {
+   "name": "Nordic Coffee Table",
+   "category": "Tables",
+   "price": 348.88,
+   "rating": 3.7
+  },
+  {
+   "name": "Dune Floor Lamp",
+   "category": "Lighting",
+   "price": 262.73,
+   "rating": 4.8
+  },
+  {
+   "name": "Harbor Armchair",
+   "category": "Seating",
+   "price": 101.59,
+   "rating": 3.3
+  },
+  {
+   "name": "Nordic Table Lamp",
+   "category": "Lighting",
+   "price": 156.42,
+   "rating": 4.3
+  },
+  {
+   "name": "Oak Chest",
+   "category": "Storage",
+   "price": 72.54,
+   "rating": 4.9
+  },
+  {
+   "name": "Ember Rug",
+   "category": "Textiles",
+   "price": 302.86,
+   "rating": 3.8
+  },
+  {
+   "name": "Bramble Shelf",
+   "category": "Storage",
+   "price": 124.32,
+   "rating": 3.4
+  },
+  {
+   "name": "Dune Bookcase",
+   "category": "Storage",
+   "price": 195.79,
+   "rating": 3.7
+  },
+  {
+   "name": "Moss Armchair",
+   "category": "Seating",
+   "price": 264.9,
+   "rating": 3.0
+  },
+  {
+   "name": "Juniper Chest",
+   "category": "Storage",
+   "price": 68.15,
+   "rating": 2.9
+  },
+  {
+   "name": "Arden Dining Table",
+   "category": "Tables",
+   "price": 372.89,
+   "rating": 2.9
+  },
+  {
+   "name": "Halo Mini Pendant",
+   "category": "Lighting",
+   "price": 31.5,
+   "rating": 4.6
+  },
+  {
+   "name": "Linden Curtain",
+   "category": "Textiles",
+   "price": 245.06,
+   "rating": 2.6
+  },
+  {
+   "name": "Kestrel Desk",
+   "category": "Tables",
+   "price": 262.47,
+   "rating": 3.6
+  },
+  {
+   "name": "Glade Floor Lamp",
+   "category": "Lighting",
+   "price": 131.57,
+   "rating": 3.3
+  },
+  {
+   "name": "Fjord Table Lamp",
+   "category": "Lighting",
+   "price": 398.2,
+   "rating": 4.7
+  },
+  {
+   "name": "Dune Blanket",
+   "category": "Textiles",
+   "price": 152.2,
+   "rating": 2.6
+  },
+  {
+   "name": "Kestrel Sideboard",
+   "category": "Storage",
+   "price": 135.35,
+   "rating": 2.9
+  },
+  {
+   "name": "Ridge Lounge Chair",
+   "category": "Seating",
+   "price": 371.95,
+   "rating": 3.1
+  },
+  {
+   "name": "Linden Bookcase",
+   "category": "Storage",
+   "price": 219.86,
+   "rating": 4.8
+  }
+ ]
+}
