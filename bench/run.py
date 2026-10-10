@@ -22,7 +22,6 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 BENCH = REPO / "bench"
-RAW = BENCH / "results" / "raw"
 
 
 def normalise(text):
@@ -63,7 +62,7 @@ def tool_stats(events):
     return calls, screenshots, tiny
 
 
-def run_one(task, cond, rep, model, cwd, settings):
+def run_one(task, cond, rep, model, cwd, settings, raw_dir):
     cmd = [
         "claude", "-p", "--chrome",
         "--model", model,
@@ -85,7 +84,7 @@ def run_one(task, cond, rep, model, cwd, settings):
         stdout = e.stdout.decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
     wall = time.time() - t0
 
-    raw_path = RAW / f"{task['id']}-{cond}-{rep}.jsonl"
+    raw_path = raw_dir / f"{task['id']}-{cond}-{rep}.jsonl"
     raw_path.write_text(stdout)
     return score(task, cond, rep, model, stdout, wall)
 
@@ -129,12 +128,13 @@ def score(task, cond, rep, model, stdout, wall=0.0):
 
 
 def regrade(out):
+    raw_dir = out.parent / "raw"
     """Re-score every row in runs.jsonl from its raw log, e.g. after fixing grade()."""
     tasks = {t["id"]: t for t in json.loads((BENCH / "tasks.json").read_text())}
     rows = [json.loads(l) for l in out.read_text().splitlines() if l.strip()]
     fresh = []
     for r in rows:
-        raw = (RAW / f"{r['task']}-{r['cond']}-{r['rep']}.jsonl").read_text()
+        raw = (raw_dir / f"{r['task']}-{r['cond']}-{r['rep']}.jsonl").read_text()
         fresh.append(score(tasks[r["task"]], r["cond"], r["rep"], r["model"], raw))
     out.write_text("".join(json.dumps(r) + "\n" for r in fresh))
     changed = sum(a["correct"] != b["correct"] for a, b in zip(rows, fresh))
@@ -159,19 +159,21 @@ def main():
         tasks = [t for t in tasks if t["id"] in keep]
     conds = args.conds.split(",")
 
-    RAW.mkdir(parents=True, exist_ok=True)
+    out = Path(args.out)
+    # Raw logs sit next to the runs file, so each model's results stay separate.
+    raw_dir = out.parent / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
     # An empty working directory outside the repo, so no CLAUDE.md, memory or
     # skills from any parent folder leak into either arm.
     cwd = tempfile.mkdtemp(prefix="chrome-speed-bench-")
     settings = BENCH / "settings.json"
 
-    out = Path(args.out)
     for rep in range(1, args.reps + 1):
         for task in tasks:
             order = conds if rep % 2 else list(reversed(conds))
             for cond in order:
                 print(f"[rep {rep}] {task['id']:<6} {cond:<8} …", end=" ", flush=True)
-                row = run_one(task, cond, rep, args.model, cwd, settings)
+                row = run_one(task, cond, rep, args.model, cwd, settings, raw_dir)
                 with out.open("a") as f:
                     f.write(json.dumps(row) + "\n")
                 print(f"{row['duration_s']:>6}s  turns={row['turns']}  shots={row['screenshots']}  "

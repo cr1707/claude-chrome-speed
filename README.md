@@ -7,8 +7,10 @@ that doesn't silently miss.
 
 ## Results
 
-30 headless runs, October 2026: 3 tasks × 5 runs, with and without the plugin, on Sonnet.
-Medians per run:
+48 headless runs, October 2026: 3 tasks, with and without the plugin, on two models.
+Medians per run, without → with:
+
+**Sonnet** (5 runs per task and arm)
 
 | Task | Time | Turns | Input tokens | Correct |
 |---|---|---|---|---|
@@ -17,10 +19,25 @@ Medians per run:
 | `wiki`: 3-page lookup | 23.6 s → 22.7 s (−4%) | 7 → 7 | −3% | 5/5 → 5/5 |
 | **All runs** | 44.8 s → **25.4 s (−43%)** | 15 → **6** | **−51%** | 15/15 → 15/15 |
 
-Same answers, in about half the time and half the tokens. The simple lookup barely moves:
-the default is already efficient there. The gains come from multi-page data and forms.
-Full tables: [`bench/results/RESULTS.md`](bench/results/RESULTS.md). Per-run data:
-[`bench/results/runs.jsonl`](bench/results/runs.jsonl).
+**Opus** (3 runs per task and arm)
+
+| Task | Time | Turns | Input tokens | Correct |
+|---|---|---|---|---|
+| `books` | 17.4 s → 15.3 s (−12%) | 6 → 5 | −17% | 3/3 → 3/3 |
+| `form` | 44.0 s → **18.2 s** (−59%) | 11 → **6** | −36% | 3/3 → 3/3 |
+| `wiki` | 26.2 s → 24.8 s (−5%) | 8 → 7 | −12% | 3/3 → 3/3 |
+| **All runs** | 26.2 s → **18.2 s (−31%)** | 8 → **6** | −12% | 9/9 → 9/9 |
+
+Same answers, faster on both models. Forms gain the most on both, because of the click
+and `read_page` quirks below. Opus already handles multi-page extraction well on its own,
+so it gains less there than Sonnet. The simple lookup barely moves on either.
+
+Haiku couldn't be tested: with the same settings that work for Sonnet and Opus, every
+browser call returned "Claude in Chrome requires permission". The cause wasn't
+investigated.
+
+Full tables: [`bench/results/RESULTS.md`](bench/results/RESULTS.md) (Sonnet),
+[`bench/results/opus/RESULTS.md`](bench/results/opus/RESULTS.md) (Opus).
 
 ## Install
 
@@ -60,13 +77,17 @@ A copy is in [`settings/permissions.example.json`](settings/permissions.example.
 
 ## Three things worth knowing about the browser tools
 
-Found while building the benchmark (Claude Code 2.1.281, macOS, Retina display,
-October 2026). Each one cost extra turns in the test runs.
+Found while building the benchmark (Claude Code 2.1.281–2.1.296, Claude in Chrome 1.0.100,
+Chrome 154, macOS, October 2026). Each one cost extra turns in the test runs.
 
-1. **A click by `ref` silently misses until the tab has had a screenshot.** The tool reports
-   "Clicked on element", but no click event reaches the page. After any screenshot in that
-   tab, even one at `scale: 0.1`, the same ref click lands on the element's exact centre.
-   The rules add that 0.1-scale screenshot before the first click.
+1. **A click is silently dropped until the tab has had a screenshot.** Claude's tabs open
+   in the background, where the page reports `visibilityState: "hidden"` and
+   `document.hasFocus() === false`. In that state `left_click` reports "Clicked on element",
+   but no event reaches the page. Any screenshot of the tab, even at `scale: 0.1`, flips
+   `hasFocus()` to `true` while the tab stays hidden, and from then on clicks land on the
+   element's exact centre. Dropped clicks never hit a different element or tab (tested on a
+   grid of buttons). The rules add that 0.1-scale screenshot before the first click.
+   Repro page: [`bench/fixtures/click-probe.html`](bench/fixtures/click-probe.html).
 2. **`read_page` with `filter: "interactive"` only returns what's on screen.** Form fields
    and buttons below the fold are left out, so Claude has to scan the page again. Without
    the filter, everything is included.
@@ -127,14 +148,22 @@ re-scores saved runs from them.
 
 ## Limits
 
-- One model (Sonnet), three tasks, five runs each. Expect the exact percentages to move
+- Two models, three tasks, three to five runs each. Expect the exact percentages to move
   with model, extension version and site.
 - Sonnet already batches without help, because the browser tool's own description tells it
   to. Most of the gain comes from the three tool quirks above and from one-script extraction.
-- The click quirk was seen on a 2× display. It may not happen everywhere; the 0.1-scale
-  screenshot costs almost nothing either way.
+- The click quirk was measured on one Mac. It may depend on platform and window state.
+  The 0.1-scale screenshot costs almost nothing either way. Results from other machines are
+  welcome: open an issue with the "Benchmark results" template.
 - Public test sites can change. If a reference answer drifts, update `bench/tasks.json`.
 - Not affiliated with Anthropic.
+
+## Author
+
+Made by **Christian Rana**: [christianrana.com](https://christianrana.com) ·
+[chris@christianrana.com](mailto:chris@christianrana.com)
+
+Questions, results from your machine, or AI-automation work: get in touch.
 
 ## License
 

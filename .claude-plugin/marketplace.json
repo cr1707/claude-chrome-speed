@@ -3,7 +3,8 @@
   "description": "Speed kit for Claude in Chrome.",
   "owner": {
     "name": "Christian Rana",
-    "url": "https://github.com/cr1707"
+    "url": "https://christianrana.com",
+    "email": "chris@christianrana.com"
   },
   "plugins": [
     {

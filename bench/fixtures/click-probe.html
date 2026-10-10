@@ -1,0 +1,17 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>click probe</title>
+<!--
+  Minimal repro for dropped clicks on a hidden Claude in Chrome tab.
+  1. python3 -m http.server 8800   (from this folder)
+  2. navigate to http://localhost:8800/click-probe.html, find "Target button"
+  3. javascript_tool: ({v: document.visibilityState, f: document.hasFocus()})
+  4. computer left_click by ref, then javascript_tool: __log   -> [] while f is false
+  5. computer screenshot scale 0.1, then click again           -> one entry at the centre
+-->
+<button id="target" style="margin:120px;padding:20px 40px">Target</button>
+<script>
+  window.__log = [];
+  document.addEventListener('click', e => __log.push({
+    target: e.target.id || e.target.tagName, x: e.clientX, y: e.clientY }), true);
+</script>

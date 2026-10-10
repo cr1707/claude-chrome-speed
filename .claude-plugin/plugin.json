@@ -4,7 +4,8 @@
   "description": "Makes Claude in Chrome faster: fast-path rules added at session start (batch steps, read text not screenshots, one-script extraction, reliable ref clicks).",
   "author": {
     "name": "Christian Rana",
-    "url": "https://github.com/cr1707"
+    "url": "https://christianrana.com",
+    "email": "chris@christianrana.com"
   },
   "homepage": "https://github.com/cr1707/claude-chrome-speed",
   "repository": "https://github.com/cr1707/claude-chrome-speed",
