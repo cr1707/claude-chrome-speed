@@ -175,7 +175,7 @@ def main():
     print("Rank-based test per task (Holm): " + "; ".join(
         f"{m} {t} p={a:.4f}" for (m, t, _), a in zip(rank_rows, adj)))
 
-    for label, keep in [("Repetitions 6-10 only (confirmatory)", lambda r: int(r["rep"]) >= 6),
+    for label, keep in [("Repetitions 6-10 only (collected after the plan)", lambda r: int(r["rep"]) >= 6),
                         (f"Excluding runs with an API stall over {STALL_S} s",
                          lambda r, m=None: True)]:
         print(f"\n{label}:")
@@ -196,7 +196,7 @@ def main():
             extra = f" (dropped: {', '.join(dropped) or 'none'})" if dropped is not None else ""
             print(f"- {m}: time saved {obs*100:.0f}%, p = {p:.4f}; medians {med}{extra}")
 
-    print("\nBash calls denied by the test harness (per arm):")
+    print("\nTool calls denied by the test harness, mostly Bash (per arm):")
     for m, rows in data.items():
         for c in ("baseline", "speed"):
             n = sum(bash_denials(raw_log(MODELS[m], r)) for r in rows if r["cond"] == c)

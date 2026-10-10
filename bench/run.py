@@ -80,7 +80,7 @@ def run_one(task, cond, rep, model, cwd, settings, raw_dir):
         sys.exit(f"{task['id']}-{cond}-{rep} already has a raw log in {raw_dir}; exclude it first")
     t0 = time.time()
     try:
-        proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=900)
+        proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=900, stdin=subprocess.DEVNULL)
         stdout = proc.stdout
     except subprocess.TimeoutExpired as e:
         stdout = e.stdout.decode() if isinstance(e.stdout, bytes) else (e.stdout or "")

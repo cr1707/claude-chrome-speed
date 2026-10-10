@@ -2,7 +2,8 @@
 """Find and exclude infrastructure failures (ANALYSIS_PLAN.md, amendments 1 and 2).
 
 A run is an infrastructure failure if its raw log contains "Browser extension is not
-connected", or has no result event (it never finished). Excluding a run moves its raw log
+connected", or it ended without a result before any browser action completed. Runs that did
+browser work and then timed out are real outcomes and are kept. Excluding a run moves its raw log
 to raw/excluded/, removes its row from runs.jsonl and records it in excluded.jsonl, so the
 same task/arm/repetition can be run again once.
 
@@ -18,15 +19,32 @@ MARKER = "Browser extension is not connected"
 
 
 def failure_reason(raw_text):
+    """Amendment 1: disconnected browser, or no result before any browser action completed.
+
+    A run that did real browser work and then timed out is a genuine (slow) outcome and is kept.
+    """
     if MARKER in raw_text:
         return "browser extension not connected"
+    browser_ids, browser_done, finished = set(), False, False
     for line in raw_text.splitlines():
         try:
-            if json.loads(line).get("type") == "result":
-                return None
+            e = json.loads(line)
         except json.JSONDecodeError:
             continue
-    return "no result event (did not finish)"
+        if e.get("type") == "result":
+            finished = True
+        msg = e.get("message")
+        content = msg.get("content") if isinstance(msg, dict) else None
+        if not isinstance(content, list):
+            continue
+        for b in content:
+            if b.get("type") == "tool_use" and b.get("name", "").startswith("mcp__claude-in-chrome__"):
+                browser_ids.add(b.get("id"))
+            if b.get("type") == "tool_result" and b.get("tool_use_id") in browser_ids and not b.get("is_error"):
+                browser_done = True
+    if finished or browser_done:
+        return None
+    return "no result before any browser action completed"
 
 
 def main():
@@ -44,6 +62,10 @@ def main():
 
     for task, cond, rep, reason, raw in failures:
         print(f"{task} {cond} {rep}" + ("" if apply else f"   ({reason})"))
+    per_arm = {}
+    for _, cond, _, _, _ in failures:
+        per_arm[cond] = per_arm.get(cond, 0) + 1
+    print(f"infrastructure failures per arm: {per_arm or 'none'}", file=sys.stderr)
     if not apply or not failures:
         return
 

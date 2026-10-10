@@ -97,3 +97,24 @@ saved per task, stratified permutation test), not a median pooled across tasks.
 **Disclosure.** The three new tasks were designed by the plugin's author after the rules were
 written, and two of them involve situations the rules address (fields that only register real
 input events; paginated data). The rules were not changed for them.
+
+## Amendment 3: independent review (2026-10-10, before the final analysis)
+
+An independent statistical review checked `analyze.py` against exact calculations and
+synthetic data with known effects: the implementation matches this plan, and its false-positive
+rate is about 5% as intended. Following the review:
+
+- **Exclusion tool aligned with amendment 1.** `bench/exclude.py` now excludes only runs where
+  the browser was not connected, or that ended without a result before any browser action
+  completed. A run that did browser work and then timed out is a real (slow) outcome and stays
+  in. Exclusions are reported per arm.
+- **Additional reported analyses** (secondary, computed by `bench/verify_stats.py`, written by
+  the reviewer): an exact rank test per task; the Hodges–Lehmann change on log time with an
+  exact confidence interval, as a robust "typical % change"; a paired analysis of the
+  back-to-back runs with a check for an order effect; and an intention-to-treat check that puts
+  completed excluded runs back in. The 12 per-task tests and the 2 pooled tests are separate
+  families; Holm correction applies within the 12.
+- **Disclosures added to the report:** between about 11:00 and 11:25 CEST the review ran
+  simulations on the same Mac at background priority while runs were being collected (both arms
+  alternate back to back, so any effect should be equal); Claude Code is not updated again until
+  collection ends, and each row records its version.
