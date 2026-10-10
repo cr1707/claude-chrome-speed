@@ -34,6 +34,10 @@ cached after the first request. Nothing else to configure. The full list is in
 
 ## Results
 
+> The benchmark measured the rules as tagged [`v0.1.0`](https://github.com/cr1707/claude-chrome-speed/tree/v0.1.0).
+> v0.2.0 changes one rule: the 0.1-scale screenshot is retaken after every page load, from a
+> finding confirmed after the benchmark. That change wasn't benchmarked separately.
+
 240 headless runs on one Mac on 10 October 2026: 6 tasks, without and with the plugin,
 10 runs per task and arm on each of two models, `claude-sonnet-5-5` and `claude-opus-5-5`.
 The tasks are described in [How the benchmark works](#how-the-benchmark-works).
@@ -143,15 +147,18 @@ A copy is in [`settings/permissions.example.json`](settings/permissions.example.
 Found while building the benchmark (Claude Code 2.1.281–2.1.296, Claude in Chrome 1.0.100,
 Chrome 154, macOS, October 2026). Each one cost extra turns in the test runs.
 
-1. **A click is silently dropped until the tab has had a screenshot.** Claude's tabs open
-   in the background, where the page reports `visibilityState: "hidden"` and
-   `document.hasFocus() === false`. In that state `left_click` reports "Clicked on element",
-   but no event reaches the page. Any screenshot of the tab, even at `scale: 0.1`, flips
-   `hasFocus()` to `true` while the tab stays hidden, and after that clicks land on the
-   element's exact centre. Dropped clicks never hit a different element or tab (tested on a
-   grid of buttons). The rules add that 0.1-scale screenshot before the first click.
+1. **A click is silently dropped until the tab has had a screenshot since its page loaded.**
+   Claude's tabs open in the background, where the page reports `visibilityState: "hidden"`.
+   In that state `left_click` reports "Clicked on element", but no event reaches the page.
+   Any screenshot of the tab, even at `scale: 0.1`, makes the next clicks land on the
+   element's exact centre. The effect resets every time the tab loads a new page or reloads
+   (a same-page `#anchor` jump doesn't reset it), so the screenshot is needed again after each
+   navigation. `document.hasFocus()` is not a reliable signal for this. Dropped clicks never
+   hit a different element or tab (tested on a grid of buttons). Since v0.2.0 the rules take
+   that 0.1-scale screenshot before the first click after every page load.
    Repro page: [`bench/fixtures/click-probe.html`](bench/fixtures/click-probe.html).
-   Reported to Anthropic: [anthropics/claude-code#101001](https://github.com/anthropics/claude-code/issues/101001).
+   Reported to Anthropic: [anthropics/claude-code#101001](https://github.com/anthropics/claude-code/issues/101001)
+   (the page-load reset is in the [follow-up comment](https://github.com/anthropics/claude-code/issues/101001#issuecomment-6096699995)).
 2. **`read_page` with `filter: "interactive"` only returns what's on screen.** Form fields
    and buttons below the fold are left out, so Claude has to scan the page again. Without
    the filter, everything is included.
@@ -168,7 +175,7 @@ Chrome 154, macOS, October 2026). Each one cost extra turns in the test runs.
 | Visit page 1, page 2, page 3… | One `javascript_tool` call that fetches and parses all pages |
 | One call per form field | One full `read_page`, then every field, the submit and the read in one `browser_batch` |
 | Click a link, then read | Get its URL, `navigate`, then read |
-| Full-size screenshots | `scale: 0.5`, or `0.1` just to prime clicks |
+| Full-size screenshots | `scale: 0.5`, or `0.1` just to prime clicks after each page load |
 
 They change how Claude works, not what it's allowed to do. Permission checks and
 confirmations still apply.

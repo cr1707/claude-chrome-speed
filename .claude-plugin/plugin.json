@@ -1,7 +1,7 @@
 {
   "name": "chrome-speed",
-  "version": "0.1.0",
-  "description": "Makes Claude in Chrome faster: fast-path rules added at session start (batch steps, read text not screenshots, one-script extraction, reliable ref clicks).",
+  "version": "0.2.0",
+  "description": "Makes Claude in Chrome faster: fast-path rules added at session start (batch steps, read text not screenshots, one-script extraction, clicks that aren't silently dropped).",
   "author": {
     "name": "Christian Rana",
     "url": "https://christianrana.com",
