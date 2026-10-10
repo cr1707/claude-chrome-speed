@@ -1,9 +1,32 @@
 # claude-chrome-speed
 
-A Claude Code plugin that makes [Claude in Chrome](https://claude.com/chrome) faster.
-It adds a short set of rules at the start of each session: batch browser steps, read pages
-as text instead of screenshots, pull paginated data with one script, and click in a way
-that doesn't silently miss.
+A Claude Code plugin that makes [Claude in Chrome](https://claude.com/chrome) faster:
+median task time down 43% on Sonnet and 31% on Opus, with the same answers.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/results-dark.svg">
+  <img src="docs/results.svg" width="880" alt="Median seconds per task, without and with the plugin. Sonnet: books 47.6 to 28.5, form 53.1 to 23.2, wiki 23.6 to 22.7. Opus: books 17.4 to 15.3, form 44.0 to 18.2, wiki 26.2 to 24.8.">
+</picture>
+
+## Install
+
+In Claude Code:
+
+```
+/plugin marketplace add cr1707/claude-chrome-speed
+/plugin install chrome-speed@claude-chrome-speed
+```
+
+Or paste [`rules/chrome-speed.md`](rules/chrome-speed.md) into `~/.claude/CLAUDE.md`.
+Same effect, no plugin.
+
+## What it does
+
+At the start of each session it adds a short set of rules to Claude's context: batch
+browser steps, read pages as text instead of screenshots, pull paginated data with one
+script, and click in a way that doesn't silently miss. That's about 750 input tokens,
+cached after the first request. Nothing else to configure. The full list is in
+[What the rules change](#what-the-rules-change).
 
 ## Results
 
@@ -38,21 +61,6 @@ investigated.
 
 Full tables: [`bench/results/RESULTS.md`](bench/results/RESULTS.md) (Sonnet),
 [`bench/results/opus/RESULTS.md`](bench/results/opus/RESULTS.md) (Opus).
-
-## Install
-
-In Claude Code:
-
-```
-/plugin marketplace add cr1707/claude-chrome-speed
-/plugin install chrome-speed@claude-chrome-speed
-```
-
-Or paste [`rules/chrome-speed.md`](rules/chrome-speed.md) into `~/.claude/CLAUDE.md`.
-Same effect, no plugin.
-
-The rules are about 400 tokens and load once per session (they're cached after the first
-request). Nothing else to configure.
 
 ## Stop the permission prompts too
 
@@ -137,6 +145,7 @@ Run it yourself:
 (cd bench/fixtures && python3 -m http.server 8799 --bind 127.0.0.1 &)
 python3 bench/run.py --reps 5          # opens tabs in your Chrome
 python3 bench/summarize.py
+python3 bench/chart.py                 # redraws the chart at the top from the results
 ```
 
 It needs Claude Code with the Claude in Chrome extension connected. The runs open tabs in

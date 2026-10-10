@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="288" viewBox="0 0 880 288" role="img" aria-labelledby="t d">
+<title id="t">Median time per browser task, without and with the chrome-speed plugin</title>
+<desc id="d">Median seconds per run, without to with the plugin. Sonnet: books 47.6 to 28.5 s, form 53.1 to 23.2 s, wiki 23.6 to 22.7 s, all runs 44.8 to 25.4 s; Opus: books 17.4 to 15.3 s, form 44.0 to 18.2 s, wiki 26.2 to 24.8 s, all runs 26.2 to 18.2 s.</desc>
+<style>text{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;} .num{font-variant-numeric:tabular-nums;}</style>
+<rect x="0.5" y="0.5" width="879" height="287" rx="12" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="44" font-size="18" font-weight="600" fill="#ffffff">Median time per browser task, in seconds</text>
+<rect x="576.3" y="33" width="12" height="12" rx="2" fill="#898781"/>
+<text x="594.3" y="44" font-size="13" fill="#c3c2b7">Without plugin</text>
+<rect x="712.4" y="33" width="12" height="12" rx="2" fill="#3987e5"/>
+<text x="730.4" y="44" font-size="13" fill="#c3c2b7">With chrome-speed</text>
+<text x="28" y="68" font-size="13.5" fill="#c3c2b7">48 headless Claude in Chrome runs, October 2026. Lower is better. Every run in both arms answered correctly.</text>
+<text x="28.0" y="104" font-size="15" font-weight="600" fill="#ffffff">Sonnet<tspan font-size="12.5" font-weight="400" fill="#898781" dx="8">5 runs per task and arm</tspan></text>
+<text x="420.0" y="104" font-size="13" text-anchor="end" fill="#c3c2b7">all runs <tspan font-weight="600" fill="#ffffff">−43%</tspan></text>
+<line x1="80.0" y1="114" x2="80.0" y2="250" stroke="#383835" stroke-width="1"/>
+<text class="num" x="80.0" y="266" font-size="12" text-anchor="middle" fill="#898781">0</text>
+<line x1="193.3" y1="114" x2="193.3" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="193.3" y="266" font-size="12" text-anchor="middle" fill="#898781">20</text>
+<line x1="306.7" y1="114" x2="306.7" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="306.7" y="266" font-size="12" text-anchor="middle" fill="#898781">40</text>
+<line x1="420.0" y1="114" x2="420.0" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="420.0" y="266" font-size="12" text-anchor="middle" fill="#898781">60 s</text>
+<text x="70.0" y="137.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">books</text>
+<path d="M80.5,122.0 H346.2 A4,4 0 0 1 350.2,126.0 V132.0 A4,4 0 0 1 346.2,136.0 H80.5 Z" fill="#898781"/>
+<text class="num" x="355.7" y="129.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">47.6</tspan></text>
+<path d="M80.5,138.0 H238.0 A4,4 0 0 1 242.0,142.0 V148.0 A4,4 0 0 1 238.0,152.0 H80.5 Z" fill="#3987e5"/>
+<text class="num" x="247.5" y="145.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">28.5</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−40%</tspan></text>
+<text x="70.0" y="183.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">form</text>
+<path d="M80.5,168.0 H377.4 A4,4 0 0 1 381.4,172.0 V178.0 A4,4 0 0 1 377.4,182.0 H80.5 Z" fill="#898781"/>
+<text class="num" x="386.9" y="175.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">53.1</tspan></text>
+<path d="M80.5,184.0 H208.0 A4,4 0 0 1 212.0,188.0 V194.0 A4,4 0 0 1 208.0,198.0 H80.5 Z" fill="#3987e5"/>
+<text class="num" x="217.5" y="191.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">23.2</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−56%</tspan></text>
+<text x="70.0" y="229.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">wiki</text>
+<path d="M80.5,214.0 H210.2 A4,4 0 0 1 214.2,218.0 V224.0 A4,4 0 0 1 210.2,228.0 H80.5 Z" fill="#898781"/>
+<text class="num" x="219.7" y="221.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">23.6</tspan></text>
+<path d="M80.5,230.0 H205.1 A4,4 0 0 1 209.1,234.0 V240.0 A4,4 0 0 1 205.1,244.0 H80.5 Z" fill="#3987e5"/>
+<text class="num" x="214.6" y="237.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">22.7</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−4%</tspan></text>
+<text x="460.0" y="104" font-size="15" font-weight="600" fill="#ffffff">Opus<tspan font-size="12.5" font-weight="400" fill="#898781" dx="8">3 runs per task and arm</tspan></text>
+<text x="852.0" y="104" font-size="13" text-anchor="end" fill="#c3c2b7">all runs <tspan font-weight="600" fill="#ffffff">−31%</tspan></text>
+<line x1="512.0" y1="114" x2="512.0" y2="250" stroke="#383835" stroke-width="1"/>
+<text class="num" x="512.0" y="266" font-size="12" text-anchor="middle" fill="#898781">0</text>
+<line x1="625.3" y1="114" x2="625.3" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="625.3" y="266" font-size="12" text-anchor="middle" fill="#898781">20</text>
+<line x1="738.7" y1="114" x2="738.7" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="738.7" y="266" font-size="12" text-anchor="middle" fill="#898781">40</text>
+<line x1="852.0" y1="114" x2="852.0" y2="250" stroke="#2c2c2a" stroke-width="1"/>
+<text class="num" x="852.0" y="266" font-size="12" text-anchor="middle" fill="#898781">60 s</text>
+<text x="502.0" y="137.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">books</text>
+<path d="M512.5,122.0 H607.1 A4,4 0 0 1 611.1,126.0 V132.0 A4,4 0 0 1 607.1,136.0 H512.5 Z" fill="#898781"/>
+<text class="num" x="616.6" y="129.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">17.4</tspan></text>
+<path d="M512.5,138.0 H595.2 A4,4 0 0 1 599.2,142.0 V148.0 A4,4 0 0 1 595.2,152.0 H512.5 Z" fill="#3987e5"/>
+<text class="num" x="604.7" y="145.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">15.3</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−12%</tspan></text>
+<text x="502.0" y="183.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">form</text>
+<path d="M512.5,168.0 H757.8 A4,4 0 0 1 761.8,172.0 V178.0 A4,4 0 0 1 757.8,182.0 H512.5 Z" fill="#898781"/>
+<text class="num" x="767.3" y="175.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">44.0</tspan></text>
+<path d="M512.5,184.0 H611.6 A4,4 0 0 1 615.6,188.0 V194.0 A4,4 0 0 1 611.6,198.0 H512.5 Z" fill="#3987e5"/>
+<text class="num" x="621.1" y="191.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">18.2</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−59%</tspan></text>
+<text x="502.0" y="229.0" dy="0.35em" font-size="13" text-anchor="end" fill="#c3c2b7">wiki</text>
+<path d="M512.5,214.0 H657.0 A4,4 0 0 1 661.0,218.0 V224.0 A4,4 0 0 1 657.0,228.0 H512.5 Z" fill="#898781"/>
+<text class="num" x="666.5" y="221.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">26.2</tspan></text>
+<path d="M512.5,230.0 H649.0 A4,4 0 0 1 653.0,234.0 V240.0 A4,4 0 0 1 649.0,244.0 H512.5 Z" fill="#3987e5"/>
+<text class="num" x="658.5" y="237.0" dy="0.35em" font-size="12.5"><tspan fill="#c3c2b7">24.8</tspan><tspan dx="8" font-weight="600" fill="#ffffff">−5%</tspan></text>
+</svg>
