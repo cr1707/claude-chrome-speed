@@ -1,0 +1,15 @@
+{
+  "description": "Adds the Claude in Chrome fast-path rules to every session, so no turn is spent loading them.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/chrome-speed.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

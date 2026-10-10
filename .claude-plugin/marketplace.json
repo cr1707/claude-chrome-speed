@@ -1,0 +1,15 @@
+{
+  "name": "claude-chrome-speed",
+  "description": "Speed kit for Claude in Chrome.",
+  "owner": {
+    "name": "Christian Rana",
+    "url": "https://github.com/cr1707"
+  },
+  "plugins": [
+    {
+      "name": "chrome-speed",
+      "source": "./",
+      "description": "Makes Claude in Chrome faster: fast-path rules added at session start."
+    }
+  ]
+}

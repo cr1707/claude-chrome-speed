@@ -1,0 +1,20 @@
+[
+  {
+    "id": "books",
+    "kind": "multi-page extraction",
+    "prompt": "Go to https://books.toscrape.com and open the Mystery category. Which 3 books in that category are the most expensive? Give the title and price of each.",
+    "expect_all": ["Boar Island", "59.48", "57.70", "Past Never Ends", "56.50"]
+  },
+  {
+    "id": "form",
+    "kind": "form fill + submit",
+    "prompt": "Open http://localhost:8799/form.html and fill in the form with: Full name Ada Moretti; Email ada.moretti@example.com; Company Northwind Studio; Street address 12 Via Roma; City Turin; Postcode 10121; Country Italy; Number of samples 3; Delivery speed Express; leave the newsletter box unticked; Notes \"Please ring the bell twice.\" Then submit it and tell me the confirmation code it shows.",
+    "expect_all": ["7E04913D"]
+  },
+  {
+    "id": "wiki",
+    "kind": "navigation chain",
+    "prompt": "Using English Wikipedia in the browser, find which country won the 2018 FIFA World Cup, then open the article about that country's capital city and tell me the population figure shown in that article's infobox.",
+    "expect_all": ["Paris", "2047602"]
+  }
+]

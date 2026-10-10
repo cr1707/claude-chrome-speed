@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample Request Form</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; color: #111; background: #fff; }
+  label { display: block; margin-top: 14px; font-weight: 600; }
+  input[type=text], input[type=email], input[type=number], select, textarea { width: 100%; padding: 8px; font: inherit; box-sizing: border-box; }
+  fieldset { margin-top: 14px; }
+  button { margin-top: 20px; padding: 10px 18px; font: inherit; }
+  #result { margin-top: 24px; padding: 12px; border: 2px solid #0a0; display: none; }
+  #error { margin-top: 24px; padding: 12px; border: 2px solid #c00; display: none; }
+</style>
+</head>
+<body>
+<h1>Sample Request</h1>
+<p>Fill in every field and press <strong>Submit request</strong>. Nothing leaves this page.</p>
+
+<form id="f" novalidate>
+  <label for="full_name">Full name</label>
+  <input type="text" id="full_name" name="full_name">
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email">
+
+  <label for="company">Company</label>
+  <input type="text" id="company" name="company">
+
+  <label for="address">Street address</label>
+  <input type="text" id="address" name="address">
+
+  <label for="city">City</label>
+  <input type="text" id="city" name="city">
+
+  <label for="postcode">Postcode</label>
+  <input type="text" id="postcode" name="postcode">
+
+  <label for="country">Country</label>
+  <select id="country" name="country">
+    <option value="">Choose…</option>
+    <option>France</option>
+    <option>Germany</option>
+    <option>Italy</option>
+    <option>Spain</option>
+    <option>United Kingdom</option>
+  </select>
+
+  <label for="quantity">Number of samples</label>
+  <input type="number" id="quantity" name="quantity" min="1" max="10">
+
+  <fieldset>
+    <legend>Delivery speed</legend>
+    <label><input type="radio" name="speed" value="standard"> Standard (5–7 days)</label>
+    <label><input type="radio" name="speed" value="express"> Express (2–3 days)</label>
+    <label><input type="radio" name="speed" value="next_day"> Next day</label>
+  </fieldset>
+
+  <label><input type="checkbox" id="newsletter" name="newsletter"> Send me the newsletter</label>
+
+  <label for="notes">Notes</label>
+  <textarea id="notes" name="notes" rows="3"></textarea>
+
+  <button type="submit">Submit request</button>
+</form>
+
+<div id="error"></div>
+<div id="result">Request received. Confirmation code: <strong id="code"></strong></div>
+
+<script>
+  // The code is a hash of every field, so it only matches the expected
+  // answer when all ten fields were filled exactly as instructed.
+  function fnv1a(s) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return h.toString(16).toUpperCase().padStart(8, '0');
+  }
+  document.getElementById('f').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const v = {
+      full_name: (d.get('full_name') || '').trim(),
+      email: (d.get('email') || '').trim().toLowerCase(),
+      company: (d.get('company') || '').trim(),
+      address: (d.get('address') || '').trim(),
+      city: (d.get('city') || '').trim(),
+      postcode: (d.get('postcode') || '').trim().toUpperCase(),
+      country: d.get('country') || '',
+      quantity: String(d.get('quantity') || ''),
+      speed: d.get('speed') || '',
+      newsletter: d.get('newsletter') ? 'yes' : 'no',
+      notes: (d.get('notes') || '').trim(),
+    };
+    const missing = Object.entries(v).filter(([k, x]) => k !== 'newsletter' && !x).map(([k]) => k);
+    const err = document.getElementById('error');
+    if (missing.length) {
+      err.textContent = 'Missing: ' + missing.join(', ');
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+    document.getElementById('code').textContent = fnv1a(JSON.stringify(v));
+    document.getElementById('result').style.display = 'block';
+  });
+</script>
+</body>
+</html>

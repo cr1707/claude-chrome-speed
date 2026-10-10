@@ -1,0 +1,19 @@
+{
+  "name": "chrome-speed",
+  "version": "0.1.0",
+  "description": "Makes Claude in Chrome faster: fast-path rules added at session start (batch steps, read text not screenshots, one-script extraction, reliable ref clicks).",
+  "author": {
+    "name": "Christian Rana",
+    "url": "https://github.com/cr1707"
+  },
+  "homepage": "https://github.com/cr1707/claude-chrome-speed",
+  "repository": "https://github.com/cr1707/claude-chrome-speed",
+  "license": "MIT",
+  "keywords": [
+    "claude-in-chrome",
+    "browser",
+    "automation",
+    "speed",
+    "hooks"
+  ]
+}

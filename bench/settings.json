@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-in-chrome",
+      "ClaudeInChromeDomain(books.toscrape.com)",
+      "ClaudeInChromeDomain(en.wikipedia.org)",
+      "ClaudeInChromeDomain(localhost:8799)"
+    ]
+  }
+}

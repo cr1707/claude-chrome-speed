@@ -1,0 +1,5 @@
+.DS_Store
+__pycache__/
+# Raw stream logs: full page text, local paths and installed-tool lists.
+bench/results/raw/
+bench/results/*/raw/
