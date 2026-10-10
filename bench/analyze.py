@@ -182,6 +182,9 @@ def main():
         for m, rows in data.items():
             folder = MODELS[m]
             if "stall" in label:
+                if not (folder / "raw").exists():
+                    print(f"- {m}: raw logs not present (they are not committed); skipped")
+                    continue
                 sub = [r for r in rows if longest_stall(raw_log(folder, r)) <= STALL_S]
                 dropped = [f"{r['task']}-{r['cond']}-{r['rep']}" for r in rows if r not in sub]
             else:
@@ -198,6 +201,9 @@ def main():
 
     print("\nTool calls denied by the test harness, mostly Bash (per arm):")
     for m, rows in data.items():
+        if not (MODELS[m] / "raw").exists():
+            print(f"- {m}: raw logs not present (they are not committed); skipped")
+            continue
         for c in ("baseline", "speed"):
             n = sum(bash_denials(raw_log(MODELS[m], r)) for r in rows if r["cond"] == c)
             print(f"- {m} {c}: {n}")

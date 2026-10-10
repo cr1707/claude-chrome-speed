@@ -6,8 +6,9 @@
   1. python3 -m http.server 8799 --bind 127.0.0.1   (from this folder)
   2. navigate to http://localhost:8799/click-probe.html, find "Target button"
   3. javascript_tool: ({v: document.visibilityState, f: document.hasFocus()})
-  4. computer left_click by ref, then javascript_tool: __log   -> [] while f is false
+  4. computer left_click by ref, then javascript_tool: __log   -> [] (dropped; f is not a reliable signal)
   5. computer screenshot scale 0.1, then click again           -> one entry at the centre
+  6. navigate to this page again (or reload), click             -> dropped again until another screenshot
 -->
 <button id="target" style="margin:120px;padding:20px 40px">Target</button>
 <script>
