@@ -42,3 +42,17 @@ changed after the pilot, and the rules are not tuned to the new tasks.
 
 All 12 per-task results go in the README, including the ones that are not significant. The
 headline claims are limited to what the tests above support.
+
+## Amendment 1: infrastructure failures (2026-10-10, before the final analysis)
+
+During data collection one run (`suppliers`, baseline, Sonnet, repetition 5) never reached
+the browser: every browser tool returned "Browser extension is not connected". That is a
+failure of the test setup, not a result about the plugin.
+
+Rule, applied the same way to both arms and decided without looking at timing results:
+- A run is an **infrastructure failure** if any browser tool result in its log contains
+  "Browser extension is not connected", or if the run times out before its first browser
+  action completes.
+- Infrastructure failures are excluded, listed in `bench/results/excluded.jsonl`, and re-run
+  once with the same task, arm, model and repetition number after the main collection ends.
+- If the re-run fails the same way, the cell is reported as missing, not imputed.
