@@ -76,6 +76,8 @@ def run_one(task, cond, rep, model, cwd, settings, raw_dir):
         cmd += ["--plugin-dir", str(REPO)]
     cmd.append(task["prompt"])
 
+    if (raw_dir / f"{task['id']}-{cond}-{rep}.jsonl").exists():
+        sys.exit(f"{task['id']}-{cond}-{rep} already has a raw log in {raw_dir}; exclude it first")
     t0 = time.time()
     try:
         proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=900)
@@ -85,6 +87,8 @@ def run_one(task, cond, rep, model, cwd, settings, raw_dir):
     wall = time.time() - t0
 
     raw_path = raw_dir / f"{task['id']}-{cond}-{rep}.jsonl"
+    if raw_path.exists():
+        sys.exit(f"refusing to overwrite {raw_path}; exclude it first (bench/exclude.py)")
     raw_path.write_text(stdout)
     return score(task, cond, rep, model, stdout, wall)
 
@@ -97,6 +101,7 @@ def score(task, cond, rep, model, stdout, wall=0.0):
         except json.JSONDecodeError:
             pass
     final = next((e for e in reversed(events) if e.get("type") == "result"), {})
+    init = next((e for e in events if e.get("type") == "system" and e.get("subtype") == "init"), {})
     result_text = final.get("result") or ""
     # Grade everything Claude said, not just the last message: a run that gives the
     # answer and then reports "closed the tab" still answered correctly.
@@ -111,6 +116,8 @@ def score(task, cond, rep, model, stdout, wall=0.0):
         "cond": cond,
         "rep": rep,
         "model": model,
+        "model_id": init.get("model"),
+        "claude_code_version": init.get("claude_code_version"),
         "correct": ok,
         "missing": missing,
         "duration_s": round(final.get("duration_ms", wall * 1000) / 1000, 1),
@@ -135,7 +142,7 @@ def regrade(out):
     fresh = []
     for r in rows:
         raw = (raw_dir / f"{r['task']}-{r['cond']}-{r['rep']}.jsonl").read_text()
-        fresh.append(score(tasks[r["task"]], r["cond"], r["rep"], r["model"], raw))
+        fresh.append(score(tasks[r["task"]], r["cond"], r["rep"], r["model"], raw, r.get("duration_s", 0.0)))
     out.write_text("".join(json.dumps(r) + "\n" for r in fresh))
     changed = sum(a["correct"] != b["correct"] for a, b in zip(rows, fresh))
     print(f"regraded {len(fresh)} runs, {changed} verdicts changed")

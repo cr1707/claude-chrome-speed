@@ -56,3 +56,44 @@ Rule, applied the same way to both arms and decided without looking at timing re
 - Infrastructure failures are excluded, listed in `bench/results/excluded.jsonl`, and re-run
   once with the same task, arm, model and repetition number after the main collection ends.
 - If the re-run fails the same way, the cell is reported as missing, not imputed.
+
+## Amendment 2: models, exclusions and sensitivity analyses (2026-10-10, before the final analysis)
+
+An independent audit of the runs collected so far found the following. These changes were
+decided before the remaining runs were collected and before any final test was run.
+
+**Two Sonnet models.** Updating Claude Code from 2.1.281 to 2.1.296 changed what the alias
+`--model sonnet` points to: `books`, `form` and `wiki` repetitions 1–5 ran on
+`claude-sonnet-5`, the new tasks on `claude-sonnet-5-5`. From now on the full model id is
+passed, and every row records `model_id` and `claude_code_version`.
+- The final Sonnet results use **`claude-sonnet-5-5` only**: all six tasks, 10 repetitions
+  per arm, in `bench/results/sonnet-5-5/`. `books`, `form` and `wiki` are collected again from
+  repetition 1 on this model.
+- The `claude-sonnet-5` runs are a pilot, kept in `bench/results/sonnet-5/` and reported
+  separately. They are not part of the final tests.
+- Opus is `claude-opus-5-5` throughout. Its `books`, `form` and `wiki` repetitions 1–3 ran on
+  Claude Code 2.1.281, everything else on 2.1.296; both arms are affected equally. This is
+  disclosed.
+
+**Infrastructure failures (complete list so far).** Amendment 1 named one run, but its rule
+matches three: Sonnet 5.5 `suppliers` repetition 5 in both arms (no answer), and Opus `spa`
+baseline repetition 1 (disconnected at its first browser action, recovered, 121 s). All
+three are excluded with `bench/exclude.py`, which moves the raw log to `raw/excluded/`,
+removes the row and records it in `excluded.jsonl`. Each excluded run is collected again
+once at the end; later failures are handled the same way. The scripts refuse to overwrite a
+raw log, and `analyze.py` stops on duplicate rows and reports cells that are not at 10.
+
+**Headline statistic.** The headline per model is the pooled statistic from test 2 (mean time
+saved per task, stratified permutation test), not a median pooled across tasks.
+
+**Sensitivity analyses (secondary, reported next to the primary results):**
+1. A rank-based permutation test per task, Holm-corrected.
+2. Repetitions 6–10 only: collected after this plan, all on Claude Code 2.1.296.
+3. Excluding runs with an API stall over 60 s inside a single model response (one Sonnet 5.5
+   pilot-era run had an 87 s stall).
+4. Bash calls denied by the test harness, counted per arm. The harness allows only the
+   browser tools in both arms and this stays unchanged, so the arms remain comparable.
+
+**Disclosure.** The three new tasks were designed by the plugin's author after the rules were
+written, and two of them involve situations the rules address (fields that only register real
+input events; paginated data). The rules were not changed for them.
