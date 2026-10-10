@@ -96,6 +96,7 @@ Chrome 154, macOS, October 2026). Each one cost extra turns in the test runs.
    element's exact centre. Dropped clicks never hit a different element or tab (tested on a
    grid of buttons). The rules add that 0.1-scale screenshot before the first click.
    Repro page: [`bench/fixtures/click-probe.html`](bench/fixtures/click-probe.html).
+   Reported to Anthropic: [anthropics/claude-code#101001](https://github.com/anthropics/claude-code/issues/101001).
 2. **`read_page` with `filter: "interactive"` only returns what's on screen.** Form fields
    and buttons below the fold are left out, so Claude has to scan the page again. Without
    the filter, everything is included.
